@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Urban Roadside | Battery & Key Rescue | 24/7 Johannesburg</title>
+  <meta name="description" content="24/7 mobile car unlock, jump start, tyre inflation, keys & ignition help, and towing in Johannesburg Central and South. WhatsApp for fast roadside assistance." />
+
+  <style>
+    :root{
+      --bg1:#050a2a;
+      --bg2:#06124a;
+      --bg3:#062a7a;
+      --glass: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 14px 40px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      background: radial-gradient(1200px 700px at 20% 20%, #0b3aa6 0%, transparent 55%),
+                  radial-gradient(900px 600px at 80% 25%, #0a2a7a 0%, transparent 60%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      min-height: 100vh;
+    }
+
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .scanlines{
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        rgba(0,0,0,0) 3px,
+        rgba(0,0,0,0) 8px
+      );
+      mix-blend-mode: overlay;
+      opacity: 0.25;
+    }
+
+    .wrap{
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 26px 18px 40px;
+    }
+
+    .topbar{
+      display:flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand{
+      display:flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(37,211,102,0.9), rgba(255,255,255,0.25));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .brand h1{
+      margin: 0;
+      font-size: 20px;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #25D366;
+      box-shadow: 0 0 18px rgba(37,211,102,0.75);
+    }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 760px){
+      .grid{ grid-template-columns: 1.3fr 0.7fr; }
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(14px);
+    }
+
+    .hero h2{
+      margin: 0 0 8px;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+    .hero .sub{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .btns{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    a.btn{
+      display:block;
+      text-decoration:none;
+      text-align:center;
+      padding: 14px 12px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .primary{
+      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
+      color: #061024;
+    }
+    .secondary{
+      background: rgba(255,255,255,0.10);
+      color: var(--text);
+    }
+
+    .mini{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list{
+      margin: 10px 0 0 18px;
+      line-height: 1.45;
+    }
+    .list li{ margin: 8px 0; }
+
+    .footer{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <div class="scanlines"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>Urban Roadside | Battery & Key Rescue</h1>
+          <p>24/7 Mobile Car Locksmith and Roadside Assist</p>
+        </div>
+      </div>
+      <div class="pill"><span class="dot"></span> JHB Central and Johannesburg South</div>
+    </div>
+
+    <div class="grid">
+      <div class="card hero">
+        <h2>Locked out, flat tyre, dead battery?<br/>WhatsApp and we come to you.</h2>
+        <p class="sub">
+          Fast mobile roadside assistance across Johannesburg Central and South.  
+          Choose a service, send your live location, then a short summary. Call-out fees may apply.
+        </p>
+
+        <div class="btns">
+          <a class="btn primary" id="waBtn" href="#">WhatsApp for Help (Menu)</a>
+          <a class="btn secondary" id="locBtn" href="#">Send Location on WhatsApp</a>
+        </div>
+
+        <p class="mini">
+          After selecting a service, please share your <b>live location</b> and send your short summary.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Services</h3>
+        <ul class="list">
+          <li><b>Car Unlock</b> (keys locked inside or lost)</li>
+          <li><b>Jump Start / Battery Boost</b></li>
+          <li><b>Flat Tyre Help</b> (tyre inflation, puncture assistance)</li>
+          <li><b>Keys / Ignition Assistance</b></li>
+          <li><b>Towing Assistance</b></li>
+        </ul>
+        <p class="mini">
+          <b>WhatsApp:</b> 084 405 3994<br/>
+          <b>Base:</b> Johannesburg CBD<br/>
+          <b>Operating:</b> 24/7
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <h3>How it works</h3>
+      <ol class="list">
+        <li>Tap WhatsApp for Help</li>
+        <li>Reply with the service number</li>
+        <li>Send your live location</li>
+        <li>Send a short summary (car make/model, what happened, exact spot)</li>
+      </ol>
+    </div>
+
+    <div class="footer">
+      If you are in danger or involved in an accident, contact emergency services first.
+    </div>
+  </div>
+
+  <script>
+    const phone = "27844053994";
+
+    const menuMessage =
+`Hi, I need roadside help in Johannesburg.
+
+Please reply with a number:
+1) Car unlock (keys locked inside / lost key)
+2) Jump start / battery boost
+3) Flat tyre / tyre inflation
+4) Keys / ignition assistance
+5) Towing assistance
+
+Then please:
+- Send your live location
+- Type a short summary (car make/model, what happened, exact spot)
+
+Thank you.`;
+
+    const locMessage =
+`Hi, I am sending my location for assistance.
+After this, I will send a short summary (car make/model, what happened, exact spot).`;
+
+    document.getElementById("waBtn").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
+
+    document.getElementById("locBtn").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(locMessage)}`;
+
+    // Particle background
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const particles = [];
+    const COUNT = 80;
+    const MAX_DIST = 120;
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: rand(0, window.innerWidth),
+        y: rand(0, window.innerHeight),
+        vx: rand(-0.4, 0.4),
+        vy: rand(-0.4, 0.4),
+        r: rand(1, 2)
+      });
+    }
+
+    function step() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="rgba(255,255,255,0.5)";
+        ctx.fill();
+      }
+
+      for (let i=0;i<particles.length;i++){
+        for (let j=i+1;j<particles.length;j++){
+          const dx=particles[i].x-particles[j].x;
+          const dy=particles[i].y-particles[j].y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d<MAX_DIST){
+            ctx.strokeStyle=`rgba(37,211,102,${(1-d/MAX_DIST)*0.2})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+  </script>
+</body>
+</html>
