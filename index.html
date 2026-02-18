@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Urban Roadside | Battery & Key Rescue | 24/7 Johannesburg</title>
-  <meta name="description" content="24/7 mobile car unlock, jump start, tyre inflation, keys & ignition help, and towing in Johannesburg Central and South. WhatsApp for fast roadside assistance." />
+  <meta name="description" content="24/7 mobile car unlock, jump start, tyre help, keys and ignition assistance, and towing in Johannesburg Central and South. WhatsApp for fast help." />
 
   <style>
     :root{
@@ -16,6 +16,7 @@
       --muted: rgba(255,255,255,0.72);
       --border: rgba(255,255,255,0.12);
       --shadow: 0 14px 40px rgba(0,0,0,0.35);
+      --green: #25D366;
     }
 
     * { box-sizing: border-box; }
@@ -59,43 +60,68 @@
     .wrap{
       position: relative;
       z-index: 2;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 26px 18px 40px;
+      padding: 18px 16px 42px;
     }
 
-    .topbar{
+    /* Nav */
+    .nav{
       display:flex;
-      gap: 12px;
-      align-items: center;
+      align-items:center;
       justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
       margin-bottom: 14px;
-      flex-wrap: wrap;
     }
-
     .brand{
       display:flex;
-      gap: 12px;
-      align-items: center;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
     }
-
     .logo{
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       border-radius: 14px;
       background: linear-gradient(135deg, rgba(37,211,102,0.9), rgba(255,255,255,0.25));
-      box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,0.25);
     }
-
-    .brand h1{
-      margin: 0;
-      font-size: 20px;
+    .brandTitle{
+      line-height: 1.1;
     }
-    .brand p{
-      margin: 2px 0 0;
+    .brandTitle b{
+      display:block;
+      font-size: 14px;
+    }
+    .brandTitle span{
+      display:block;
+      font-size: 12px;
       color: var(--muted);
+      margin-top: 2px;
+    }
+    .navLinks{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .navLinks a{
+      color: var(--text);
+      text-decoration: none;
       font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .navLinks a:hover{
+      background: rgba(255,255,255,0.08);
     }
 
     .pill{
@@ -109,12 +135,14 @@
       color: var(--muted);
       font-size: 13px;
       backdrop-filter: blur(10px);
+      margin-right: 8px;
+      margin-bottom: 8px;
     }
     .dot{
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: #25D366;
+      background: var(--green);
       box-shadow: 0 0 18px rgba(37,211,102,0.75);
     }
 
@@ -123,8 +151,8 @@
       gap: 14px;
       grid-template-columns: 1fr;
     }
-    @media (min-width: 760px){
-      .grid{ grid-template-columns: 1.3fr 0.7fr; }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 1.35fr 0.65fr; }
     }
 
     .card{
@@ -136,15 +164,15 @@
       backdrop-filter: blur(14px);
     }
 
-    .hero h2{
-      margin: 0 0 8px;
-      font-size: 26px;
+    .hero h1{
+      margin: 0 0 10px;
+      font-size: 28px;
       line-height: 1.15;
     }
-    .hero .sub{
-      margin: 0 0 12px;
+    .hero p{
+      margin: 0 0 10px;
       color: var(--muted);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .btns{
@@ -176,19 +204,76 @@
       margin-top: 10px;
       font-size: 13px;
       color: var(--muted);
+      line-height: 1.45;
     }
 
-    .list{
+    ul{
       margin: 10px 0 0 18px;
       line-height: 1.45;
     }
-    .list li{ margin: 8px 0; }
+    li{ margin: 8px 0; }
+
+    .kpis{
+      display:grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+      margin-top: 12px;
+    }
+    @media (min-width: 560px){
+      .kpis{ grid-template-columns: 1fr 1fr; }
+    }
+    .kpi{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .kpi b{ display:block; font-size: 14px; }
+    .kpi span{ display:block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.35; }
 
     .footer{
       margin-top: 14px;
       color: var(--muted);
       font-size: 12px;
       text-align: center;
+    }
+
+    /* Floating action buttons */
+    .fab{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9999;
+      display: grid;
+      gap: 10px;
+    }
+    .fab a{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+    }
+    .fab .wa{
+      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
+      color: #061024;
+    }
+    .fab .call{
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.95);
+    }
+    .fab a span{
+      font-size: 16px;
+      line-height: 1;
+    }
+    .fab a:active{
+      transform: scale(0.98);
     }
   </style>
 </head>
@@ -198,23 +283,35 @@
   <div class="scanlines"></div>
 
   <div class="wrap">
-    <div class="topbar">
+    <div class="nav">
       <div class="brand">
-        <div class="logo"></div>
-        <div>
-          <h1>Urban Roadside | Battery & Key Rescue</h1>
-          <p>24/7 Mobile Car Locksmith and Roadside Assist</p>
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <b>Urban Roadside | Battery & Key Rescue</b>
+          <span>24/7 Mobile Car Locksmith and Roadside Assist</span>
         </div>
       </div>
-      <div class="pill"><span class="dot"></span> JHB Central and Johannesburg South</div>
+
+      <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">Service Areas + Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div>
+      <span class="pill"><span class="dot"></span> JHB Central and Johannesburg South</span>
+      <span class="pill"><span class="dot"></span> Operating: 24/7</span>
+      <span class="pill"><span class="dot"></span> ETA: 30–60 mins</span>
     </div>
 
     <div class="grid">
       <div class="card hero">
-        <h2>Locked out, flat tyre, dead battery?<br/>WhatsApp and we come to you.</h2>
-        <p class="sub">
-          Fast mobile roadside assistance across Johannesburg Central and South.  
-          Choose a service, send your live location, then a short summary. Call-out fees may apply.
+        <h1>Locked out, flat tyre, dead battery?<br/>WhatsApp and we come to you.</h1>
+        <p>
+          Fast mobile roadside assistance across Johannesburg Central and South.
+          Choose a service, send your live location, then a short summary.
+          <b>Estimated arrival time 30–60 minutes.</b> Prices exclude call-out fee.
         </p>
 
         <div class="btns">
@@ -222,31 +319,49 @@
           <a class="btn secondary" id="locBtn" href="#">Send Location on WhatsApp</a>
         </div>
 
+        <div class="kpis">
+          <div class="kpi">
+            <b>Clear process</b>
+            <span>Choose a service, share live location, send a short summary.</span>
+          </div>
+          <div class="kpi">
+            <b>Professional service</b>
+            <span>Johannesburg based. We quote before we start work.</span>
+          </div>
+        </div>
+
         <p class="mini">
-          After selecting a service, please share your <b>live location</b> and send your short summary.
+          Example message: “Toyota Corolla 2016, keys locked inside, at Engen near Southgate, urgent.”
         </p>
       </div>
 
-      <div class="card">
-        <h3>Services</h3>
-        <ul class="list">
+      <div class="card" id="contact">
+        <h2 style="margin:0 0 10px;">Services</h2>
+        <ul>
           <li><b>Car Unlock</b> (keys locked inside or lost)</li>
           <li><b>Jump Start / Battery Boost</b></li>
           <li><b>Flat Tyre Help</b> (tyre inflation, puncture assistance)</li>
           <li><b>Keys / Ignition Assistance</b></li>
           <li><b>Towing Assistance</b></li>
         </ul>
+
         <p class="mini">
           <b>WhatsApp:</b> 084 405 3994<br/>
           <b>Base:</b> Johannesburg CBD<br/>
-          <b>Operating:</b> 24/7
+          <b>Coverage:</b> JHB Central and Johannesburg South<br/>
+          <b>ETA:</b> 30–60 mins (traffic and distance)
+        </p>
+
+        <p class="mini">
+          For areas list and pricing guide:<br/>
+          <a href="about.html" style="color: var(--text);">Service Areas + Pricing</a>
         </p>
       </div>
     </div>
 
     <div class="card" style="margin-top:14px;">
-      <h3>How it works</h3>
-      <ol class="list">
+      <h2 style="margin:0 0 10px;">How it works</h2>
+      <ol style="margin: 10px 0 0 18px; line-height: 1.55;">
         <li>Tap WhatsApp for Help</li>
         <li>Reply with the service number</li>
         <li>Send your live location</li>
@@ -259,28 +374,52 @@
     </div>
   </div>
 
+  <!-- Floating buttons -->
+  <div class="fab" aria-label="Quick contact buttons">
+    <a class="wa" id="fabWa" href="#" title="WhatsApp">
+      <span>WA</span>
+    </a>
+    <a class="call" id="fabCall" href="tel:0844053994" title="Call">
+      <span>Call</span>
+    </a>
+  </div>
+
   <script>
     const phone = "27844053994";
 
     const menuMessage =
 `Hi, I need roadside help in Johannesburg.
 
-Please reply with a number:
+Please reply with a number below that best matches your need:
 1) Car unlock (keys locked inside / lost key)
 2) Jump start / battery boost
-3) Flat tyre / tyre inflation
+3) Flat tyre / tyre inflation (puncture assist)
 4) Keys / ignition assistance
 5) Towing assistance
+
+Important:
+- Estimated arrival time: 30–60 minutes (traffic and distance)
+- Prices exclude call-out fee
+- Final price depends on distance and vehicle type
 
 Then please:
 - Send your live location
 - Type a short summary (car make/model, what happened, exact spot)
 
 Thank you.`;
+    
+const locMessage =
+`IMPORTANT: Please share your LIVE LOCATION in WhatsApp.
+Tap the paperclip (attach) → Location → Share live location.
 
-    const locMessage =
-`Hi, I am sending my location for assistance.
-After this, I will send a short summary (car make/model, what happened, exact spot).`;
+PLEASE RESPOND WITH ANSWERS TO THE FOLLOWING QUESTIONS:
+1) What service do you require? (Car unlock / Jump start / Tyre help / Keys or ignition / Towing)
+2) Where are you? (Send live location and type the nearest landmark)
+3) Please give a short description of what happened.
+4) Car make and model.
+5) Are you aware of the costs associated with the service you require? (Yes/No)
+
+Thank you.`;
 
     document.getElementById("waBtn").href =
       `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
@@ -288,7 +427,10 @@ After this, I will send a short summary (car make/model, what happened, exact sp
     document.getElementById("locBtn").href =
       `https://wa.me/${phone}?text=${encodeURIComponent(locMessage)}`;
 
-    // Particle background
+    document.getElementById("fabWa").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
+
+    // Live background: particle network
     const canvas = document.getElementById("bgCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -300,7 +442,7 @@ After this, I will send a short summary (car make/model, what happened, exact sp
     resize();
 
     const particles = [];
-    const COUNT = 80;
+    const COUNT = 85;
     const MAX_DIST = 120;
 
     function rand(min, max){ return Math.random() * (max - min) + min; }
