@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Service Areas, Pricing and FAQ | Urban Roadside</title>
+  <meta name="description" content="Service areas, pricing guidance, and FAQ for Urban Roadside | Battery & Key Rescue. Johannesburg Central and South. 24/7 mobile roadside help." />
+
+  <style>
+    :root{
+      --bg1:#050a2a;
+      --bg2:#06124a;
+      --bg3:#062a7a;
+      --glass: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 14px 40px rgba(0,0,0,0.35);
+      --green: #25D366;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      background: radial-gradient(1200px 700px at 20% 20%, #0b3aa6 0%, transparent 55%),
+                  radial-gradient(900px 600px at 80% 25%, #0a2a7a 0%, transparent 60%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      min-height: 100vh;
+    }
+
+    #bgCanvas{
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .scanlines{
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        rgba(0,0,0,0) 3px,
+        rgba(0,0,0,0) 8px
+      );
+      mix-blend-mode: overlay;
+      opacity: 0.25;
+    }
+
+    .wrap{
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 18px 16px 42px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 240px;
+    }
+    .logo{
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(37,211,102,0.9), rgba(255,255,255,0.25));
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .brandTitle{
+      line-height: 1.1;
+    }
+    .brandTitle b{
+      display:block;
+      font-size: 14px;
+    }
+    .brandTitle span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .navLinks{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .navLinks a{
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .navLinks a:hover{
+      background: rgba(255,255,255,0.08);
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(14px);
+      margin-bottom: 14px;
+    }
+
+    h1,h2{ margin: 0 0 10px; }
+    p{ margin: 0 0 10px; color: var(--muted); line-height: 1.5; }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 18px rgba(37,211,102,0.75);
+    }
+
+    .btnRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    a.btn{
+      text-decoration:none;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      color: var(--text);
+    }
+    a.btn.primary{
+      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
+      color: #061024;
+    }
+
+    ul{ margin: 8px 0 0 18px; line-height: 1.5; }
+    li{ margin: 8px 0; }
+
+    .faq details{
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+    .faq summary{
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .faq .ans{
+      margin-top: 8px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .footer{
+      margin-top: 14px;
+      color: rgba(255,255,255,0.65);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* Floating action buttons */
+    .fab{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9999;
+      display: grid;
+      gap: 10px;
+    }
+    .fab a{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+      backdrop-filter: blur(10px);
+    }
+    .fab .wa{
+      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
+      color: #061024;
+    }
+    .fab .call{
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.95);
+    }
+    .fab a span{
+      font-size: 16px;
+      line-height: 1;
+    }
+    .fab a:active{
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="bgCanvas"></canvas>
+  <div class="scanlines"></div>
+
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <b>Urban Roadside | Battery & Key Rescue</b>
+          <span>24/7 Mobile Car Locksmith and Roadside Assist</span>
+        </div>
+      </div>
+
+      <div class="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">Service Areas + Pricing</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h1>Service Areas, Pricing and FAQ</h1>
+      <p>
+        We provide 24/7 mobile roadside assistance in Johannesburg Central and Johannesburg South.
+        WhatsApp us for fast help. Prices exclude call-out fee. Final price depends on distance and vehicle type.
+      </p>
+      <div class="btnRow">
+        <a class="btn primary" id="waBtn" href="#">WhatsApp for Help</a>
+        <a class="btn" href="index.html">Back to Home</a>
+      </div>
+      <div style="margin-top:12px;">
+        <span class="pill"><span class="dot"></span> Base: Johannesburg CBD</span>
+        <span class="pill"><span class="dot"></span> WhatsApp: 084 405 3994</span>
+        <span class="pill"><span class="dot"></span> ETA: 30–60 mins</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Service Areas</h2>
+        <p>
+          We provide 24/7 mobile roadside assistance across Johannesburg Central and Johannesburg South.
+          If you are unsure whether we cover your area, WhatsApp us with your location.
+        </p>
+
+        <ul>
+          <li>Johannesburg CBD</li>
+          <li>Southgate</li>
+          <li>Rosettenville</li>
+          <li>Turffontein</li>
+          <li>Alberton</li>
+          <li>Glenanda</li>
+          <li>Mondeor</li>
+          <li>Crown Mines</li>
+          <li>Selby</li>
+          <li>Booysens</li>
+        </ul>
+
+        <p style="margin-top:10px;">
+          Estimated arrival time: <b>30–60 minutes</b> depending on traffic and distance.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Pricing Guide</h2>
+        <p>
+          Below are starting prices. Final price depends on distance, vehicle type, and complexity.
+          <b>Prices exclude call-out fee.</b>
+        </p>
+
+        <ul>
+          <li><b>Car Unlock:</b> From R650</li>
+          <li><b>Jump Start / Battery Boost:</b> From R350</li>
+          <li><b>Tyre Inflation / Puncture Assist:</b> From R250</li>
+          <li><b>Keys / Ignition Assistance:</b> Quote on inspection</li>
+          <li><b>Towing Assistance:</b> Depends on distance</li>
+        </ul>
+
+        <p style="margin-top:10px;">
+          We confirm pricing on WhatsApp before starting any work.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>About Urban Roadside</h2>
+      <p>
+        Urban Roadside | Battery & Key Rescue is a Johannesburg-based mobile roadside service.
+        We help drivers who are locked out, dealing with flat tyres, dead batteries, or key and ignition issues.
+        Our goal is simple, get you back on the road quickly and safely.
+      </p>
+      <p>
+        How to get help: WhatsApp us, choose a service, share your live location, then send a short summary.
+      </p>
+    </div>
+
+    <div class="card faq">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>How fast do you arrive?</summary>
+        <div class="ans">
+          Estimated arrival time is 30–60 minutes depending on traffic and distance.
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you operate at night?</summary>
+        <div class="ans">
+          Yes, we operate 24/7 including weekends and public holidays.
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you charge a call-out fee?</summary>
+        <div class="ans">
+          Yes, call-out fees apply depending on distance and area. Prices listed exclude call-out fee.
+        </div>
+      </details>
+
+      <details>
+        <summary>What affects the final price?</summary>
+        <div class="ans">
+          Final price depends on distance, vehicle type, and complexity of the job. We confirm pricing before starting work.
+        </div>
+      </details>
+
+      <details>
+        <summary>What should I send on WhatsApp?</summary>
+        <div class="ans">
+          Send your live location and a short summary including car make/model, what happened, and your exact spot.
+        </div>
+      </details>
+
+      <details>
+        <summary>Do you cover Alberton?</summary>
+        <div class="ans">
+          Yes. We cover Alberton and surrounding Johannesburg South areas. WhatsApp us your location to confirm.
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p><b>WhatsApp:</b> 084 405 3994</p>
+      <p><b>Base:</b> Johannesburg CBD</p>
+      <p><b>Hours:</b> 24/7</p>
+      <div class="btnRow">
+        <a class="btn primary" id="waBtn2" href="#">WhatsApp Now</a>
+        <a class="btn" href="index.html">Home</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      If you are in danger or involved in an accident, contact emergency services first.
+    </div>
+  </div>
+
+  <!-- Floating buttons -->
+  <div class="fab" aria-label="Quick contact buttons">
+    <a class="wa" id="fabWa" href="#" title="WhatsApp">
+      <span>WA</span>
+    </a>
+    <a class="call" id="fabCall" href="tel:0844053994" title="Call">
+      <span>Call</span>
+    </a>
+  </div>
+
+  <script>
+    const phone = "27844053994";
+
+    const menuMessage =
+`Hi, I need roadside help in Johannesburg.
+
+Please reply with a number:
+1) Car unlock (keys locked inside / lost key)
+2) Jump start / battery boost
+3) Flat tyre / tyre inflation (puncture assist)
+4) Keys / ignition assistance
+5) Towing assistance
+
+Important:
+- Estimated arrival time: 30–60 minutes (traffic and distance)
+- Prices exclude call-out fee
+- Final price depends on distance and vehicle type
+
+Then please:
+- Send your live location
+- Type a short summary (car make/model, what happened, exact spot)
+
+Thank you.`;
+
+    document.getElementById("waBtn").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
+    document.getElementById("waBtn2").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
+    document.getElementById("fabWa").href =
+      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
+
+    // Background
+    const canvas = document.getElementById("bgCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const particles = [];
+    const COUNT = 80;
+    const MAX_DIST = 120;
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: rand(0, window.innerWidth),
+        y: rand(0, window.innerHeight),
+        vx: rand(-0.4, 0.4),
+        vy: rand(-0.4, 0.4),
+        r: rand(1, 2)
+      });
+    }
+
+    function step() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="rgba(255,255,255,0.5)";
+        ctx.fill();
+      }
+
+      for (let i=0;i<particles.length;i++){
+        for (let j=i+1;j<particles.length;j++){
+          const dx=particles[i].x-particles[j].x;
+          const dy=particles[i].y-particles[j].y;
+          const d=Math.sqrt(dx*dx+dy*dy);
+          if(d<MAX_DIST){
+            ctx.strokeStyle=`rgba(37,211,102,${(1-d/MAX_DIST)*0.2})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+  </script>
+</body>
+</html>
