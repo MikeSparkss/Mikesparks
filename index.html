@@ -1,495 +1,68 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Urban Roadside | Battery & Key Rescue | 24/7 Johannesburg</title>
-  <meta name="description" content="24/7 mobile car unlock, jump start, tyre help, keys and ignition assistance, and towing in Johannesburg Central and South. WhatsApp for fast help." />
+<!DOCTYPE html><html lang="en-ZA"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urban Roadside | 24/7 Car Unlock, Jump Start &amp; Towing in Johannesburg</title>
+<meta name="description" content="24/7 mobile car unlock, jump start, tyre help, keys and ignition, fuel delivery and towing in Johannesburg Central and South. WhatsApp for fast help. ETA 30–60 minutes.">
+<link rel="canonical" href="https://urbanroadside.co.za/"><meta property="og:title" content="Urban Roadside | 24/7 Roadside Rescue in Johannesburg"><meta property="og:image" content="https://urbanroadside.co.za/images/towing.jpg"><meta name="theme-color" content="#0e1511"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"AutomotiveBusiness","name":"Urban Roadside","description":"24/7 mobile car locksmith and roadside assistance in Johannesburg Central and South.","url":"https://urbanroadside.co.za/","telephone":"+27844053994","openingHours":"Mo-Su 00:00-23:59","address":{"@type":"PostalAddress","addressLocality":"Johannesburg","addressRegion":"Gauteng","addressCountry":"ZA"},"areaServed":["Johannesburg Central","Johannesburg South"]}</script></head><body>
+<a class="skip" href="#main">Skip to content</a><header><div class="wrap"><a class="brand" href="index.html"><i aria-hidden="true"></i>Urban <em>Roadside</em></a><nav aria-label="Main"><ul><li><a href="index.html#services">Services</a></li><li><a href="index.html#how">How it works</a></li><li><a href="about.html">Service areas + pricing</a></li><li><a href="#contact">Contact</a></li></ul></nav><a class="btn btn-wa head-cta" href="https://wa.me/27844053994" data-wa>WhatsApp us</a></div></header>
+<main id="main">
+<div class="hero"><div class="wrap"><div>
+<p class="status"><b aria-hidden="true"></b>Open now · 24/7 · ETA 30–60 mins</p>
+<h1>Stuck on the road? <span>We come to you.</span></h1>
+<p class="lead">Mobile locksmith and roadside help across Johannesburg Central and South. Pick a service, message us, and we quote before we start.</p>
+<div class="hero-cta"><a class="btn btn-wa" href="#services">Get help now</a><a class="btn btn-ghost" href="about.html">See prices</a></div>
+</div>
+<div class="frame"><img src="images/towing.jpg" alt="Urban Roadside technician securing a car on a flatbed tow truck" width="720" height="480"><div class="tag"><small>Typical arrival</small><strong>30–60 min</strong></div></div>
+</div></div>
+<div class="trust"><div class="wrap"><span>Open 24/7</span><span>We quote before any work</span><span>JHB Central + South</span><span>Base: Johannesburg CBD</span></div></div>
 
-  <style>
-    :root{
-      --bg1:#050a2a;
-      --bg2:#06124a;
-      --bg3:#062a7a;
-      --glass: rgba(255,255,255,0.08);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 14px 40px rgba(0,0,0,0.35);
-      --green: #25D366;
-    }
+<section id="services"><div class="wrap">
+<h2 class="title">Choose your service</h2>
+<p class="intro">Tap a service to see the starting price, then send your details straight to us on WhatsApp. Prices exclude the call-out fee.</p>
+<div class="picker">
+<div class="tabs" role="tablist" aria-label="Services" id="tabs"></div>
+<div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+</div>
+<noscript><p><a href="about.html">See all services and prices</a>, or WhatsApp 084 405 3994.</p></noscript>
+</div></section>
 
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: var(--text);
-      overflow-x: hidden;
-      background: radial-gradient(1200px 700px at 20% 20%, #0b3aa6 0%, transparent 55%),
-                  radial-gradient(900px 600px at 80% 25%, #0a2a7a 0%, transparent 60%),
-                  linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
-      min-height: 100vh;
-    }
+<section class="how" id="how"><div class="wrap">
+<h2 class="title">How it works</h2><p class="intro">Four steps, all on WhatsApp.</p>
+<ol class="steps"><li><b>Tap WhatsApp</b><span>Use the form above or any button on this page.</span></li><li><b>Choose your service</b><span>Tell us what you need.</span></li><li><b>Share live location</b><span>So we find you without guessing.</span></li><li><b>Send a short summary</b><span>Car make and model, what happened, exact spot.</span></li></ol>
+<div class="example"><small>Example message</small>“Toyota Corolla 2016, keys locked inside, at Engen near Southgate, urgent.”</div>
+</div></section>
 
-    #bgCanvas{
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.55;
-      pointer-events: none;
-    }
+<section class="reviews" id="reviews" hidden><div class="wrap"><h2 class="title">What customers say</h2><div class="rgrid" id="rgrid"></div></div></section>
 
-    .scanlines{
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.03),
-        rgba(255,255,255,0.03) 1px,
-        rgba(0,0,0,0) 3px,
-        rgba(0,0,0,0) 8px
-      );
-      mix-blend-mode: overlay;
-      opacity: 0.25;
-    }
-
-    .wrap{
-      position: relative;
-      z-index: 2;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 18px 16px 42px;
-    }
-
-    /* Nav */
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-      margin-bottom: 14px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      min-width: 240px;
-    }
-    .logo{
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(37,211,102,0.9), rgba(255,255,255,0.25));
-      border: 1px solid rgba(255,255,255,0.25);
-    }
-    .brandTitle{
-      line-height: 1.1;
-    }
-    .brandTitle b{
-      display:block;
-      font-size: 14px;
-    }
-    .brandTitle span{
-      display:block;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .navLinks{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .navLinks a{
-      color: var(--text);
-      text-decoration: none;
-      font-size: 13px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-    }
-    .navLinks a:hover{
-      background: rgba(255,255,255,0.08);
-    }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 13px;
-      backdrop-filter: blur(10px);
-      margin-right: 8px;
-      margin-bottom: 8px;
-    }
-    .dot{
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--green);
-      box-shadow: 0 0 18px rgba(37,211,102,0.75);
-    }
-
-    .grid{
-      display:grid;
-      gap: 14px;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 860px){
-      .grid{ grid-template-columns: 1.35fr 0.65fr; }
-    }
-
-    .card{
-      background: var(--glass);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 18px;
-      backdrop-filter: blur(14px);
-    }
-
-    .hero h1{
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 1.15;
-    }
-    .hero p{
-      margin: 0 0 10px;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    .btns{
-      display:grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    a.btn{
-      display:block;
-      text-decoration:none;
-      text-align:center;
-      padding: 14px 12px;
-      border-radius: 14px;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .primary{
-      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
-      color: #061024;
-    }
-    .secondary{
-      background: rgba(255,255,255,0.10);
-      color: var(--text);
-    }
-
-    .mini{
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    ul{
-      margin: 10px 0 0 18px;
-      line-height: 1.45;
-    }
-    li{ margin: 8px 0; }
-
-    .kpis{
-      display:grid;
-      gap: 10px;
-      grid-template-columns: 1fr;
-      margin-top: 12px;
-    }
-    @media (min-width: 560px){
-      .kpis{ grid-template-columns: 1fr 1fr; }
-    }
-    .kpi{
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      padding: 12px;
-    }
-    .kpi b{ display:block; font-size: 14px; }
-    .kpi span{ display:block; margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.35; }
-
-    .footer{
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    /* Floating action buttons */
-    .fab{
-      position: fixed;
-      right: 16px;
-      bottom: 16px;
-      z-index: 9999;
-      display: grid;
-      gap: 10px;
-    }
-    .fab a{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.45);
-      backdrop-filter: blur(10px);
-    }
-    .fab .wa{
-      background: linear-gradient(135deg, rgba(37,211,102,0.95), rgba(255,255,255,0.18));
-      color: #061024;
-    }
-    .fab .call{
-      background: rgba(255,255,255,0.12);
-      color: rgba(255,255,255,0.95);
-    }
-    .fab a span{
-      font-size: 16px;
-      line-height: 1;
-    }
-    .fab a:active{
-      transform: scale(0.98);
-    }
-  </style>
-</head>
-
-<body>
-  <canvas id="bgCanvas"></canvas>
-  <div class="scanlines"></div>
-
-  <div class="wrap">
-    <div class="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="brandTitle">
-          <b>Urban Roadside | Battery & Key Rescue</b>
-          <span>24/7 Mobile Car Locksmith and Roadside Assist</span>
-        </div>
-      </div>
-
-      <div class="navLinks">
-        <a href="index.html">Home</a>
-        <a href="about.html">Service Areas + Pricing</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-
-    <div>
-      <span class="pill"><span class="dot"></span> JHB Central and Johannesburg South</span>
-      <span class="pill"><span class="dot"></span> Operating: 24/7</span>
-      <span class="pill"><span class="dot"></span> ETA: 30–60 mins</span>
-    </div>
-
-    <div class="grid">
-      <div class="card hero">
-        <h1>Locked out, flat tyre, dead battery?<br/>WhatsApp and we come to you.</h1>
-        <p>
-          Fast mobile roadside assistance across Johannesburg Central and South.
-          Choose a service, send your live location, then a short summary.
-          <b>Estimated arrival time 30–60 minutes.</b> Prices exclude call-out fee.
-        </p>
-
-        <div class="btns">
-          <a class="btn primary" id="waBtn" href="#">WhatsApp for Help (Menu)</a>
-          <a class="btn secondary" id="locBtn" href="#">Send Location on WhatsApp</a>
-        </div>
-
-        <div class="kpis">
-          <div class="kpi">
-            <b>Clear process</b>
-            <span>Choose a service, share live location, send a short summary.</span>
-          </div>
-          <div class="kpi">
-            <b>Professional service</b>
-            <span>Johannesburg based. We quote before we start work.</span>
-          </div>
-        </div>
-
-        <p class="mini">
-          Example message: “Toyota Corolla 2016, keys locked inside, at Engen near Southgate, urgent.”
-        </p>
-      </div>
-
-      <div class="card" id="contact">
-        <h2 style="margin:0 0 10px;">Services</h2>
-        <ul>
-          <li><b>Car Unlock</b> (keys locked inside or lost)</li>
-          <li><b>Jump Start / Battery Boost</b></li>
-          <li><b>Flat Tyre Help</b> (tyre inflation, puncture assistance)</li>
-          <li><b>Keys / Ignition Assistance</b></li>
-          <li><b>Towing Assistance</b></li>
-        </ul>
-
-        <p class="mini">
-          <b>WhatsApp:</b> 084 405 3994<br/>
-          <b>Base:</b> Johannesburg CBD<br/>
-          <b>Coverage:</b> JHB Central and Johannesburg South<br/>
-          <b>ETA:</b> 30–60 mins (traffic and distance)
-        </p>
-
-        <p class="mini">
-          For areas list and pricing guide:<br/>
-          <a href="about.html" style="color: var(--text);">Service Areas + Pricing</a>
-        </p>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:14px;">
-      <h2 style="margin:0 0 10px;">How it works</h2>
-      <ol style="margin: 10px 0 0 18px; line-height: 1.55;">
-        <li>Tap WhatsApp for Help</li>
-        <li>Reply with the service number</li>
-        <li>Send your live location</li>
-        <li>Send a short summary (car make/model, what happened, exact spot)</li>
-      </ol>
-    </div>
-
-    <div class="footer">
-      If you are in danger or involved in an accident, contact emergency services first.
-    </div>
-  </div>
-
-  <!-- Floating buttons -->
-  <div class="fab" aria-label="Quick contact buttons">
-    <a class="wa" id="fabWa" href="#" title="WhatsApp">
-      <span>WA</span>
-    </a>
-    <a class="call" id="fabCall" href="tel:0844053994" title="Call">
-      <span>Call</span>
-    </a>
-  </div>
-
-  <script>
-    const phone = "27844053994";
-
-    const menuMessage =
-`Hi, I need roadside help in Johannesburg.
-
-Please reply with a number below that best matches your need:
-1) Car unlock (keys locked inside / lost key)
-2) Jump start / battery boost
-3) Flat tyre / tyre inflation (puncture assist)
-4) Keys / ignition assistance
-5) Towing assistance
-
-Important:
-- Estimated arrival time: 30–60 minutes (traffic and distance)
-- Prices exclude call-out fee
-- Final price depends on distance and vehicle type
-
-Then please:
-- Send your live location
-- Type a short summary (car make/model, what happened, exact spot)
-
-Thank you.`;
-    
-const locMessage =
-`IMPORTANT: Please share your LIVE LOCATION in WhatsApp.
-Tap the paperclip (attach) → Location → Share live location.
-
-PLEASE RESPOND WITH ANSWERS TO THE FOLLOWING QUESTIONS:
-1) What service do you require? (Car unlock / Jump start / Tyre help / Keys or ignition / Towing)
-2) Where are you? (Send live location and type the nearest landmark)
-3) Please give a short description of what happened.
-4) Car make and model.
-5) Are you aware of the costs associated with the service you require? (Yes/No)
-
-Thank you.`;
-
-    document.getElementById("waBtn").href =
-      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
-
-    document.getElementById("locBtn").href =
-      `https://wa.me/${phone}?text=${encodeURIComponent(locMessage)}`;
-
-    document.getElementById("fabWa").href =
-      `https://wa.me/${phone}?text=${encodeURIComponent(menuMessage)}`;
-
-    // Live background: particle network
-    const canvas = document.getElementById("bgCanvas");
-    const ctx = canvas.getContext("2d");
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    const particles = [];
-    const COUNT = 85;
-    const MAX_DIST = 120;
-
-    function rand(min, max){ return Math.random() * (max - min) + min; }
-
-    for (let i = 0; i < COUNT; i++) {
-      particles.push({
-        x: rand(0, window.innerWidth),
-        y: rand(0, window.innerHeight),
-        vx: rand(-0.4, 0.4),
-        vy: rand(-0.4, 0.4),
-        r: rand(1, 2)
-      });
-    }
-
-    function step() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle="rgba(255,255,255,0.5)";
-        ctx.fill();
-      }
-
-      for (let i=0;i<particles.length;i++){
-        for (let j=i+1;j<particles.length;j++){
-          const dx=particles[i].x-particles[j].x;
-          const dy=particles[i].y-particles[j].y;
-          const d=Math.sqrt(dx*dx+dy*dy);
-          if(d<MAX_DIST){
-            ctx.strokeStyle=`rgba(37,211,102,${(1-d/MAX_DIST)*0.2})`;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x,particles[i].y);
-            ctx.lineTo(particles[j].x,particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(step);
-    }
-    step();
-  </script>
-</body>
-</html>
+<section id="contact"><div class="wrap two">
+<img class="photo" src="images/roadside.jpg" alt="Urban Roadside assistance truck with a warning triangle on the road" width="230" height="350" loading="lazy">
+<div><h2 class="title">Contact and coverage</h2>
+<ul class="facts"><li><span>Hours</span><span>24/7</span></li><li><span>Base</span><span>Johannesburg CBD</span></li><li><span>Coverage</span><span>JHB Central and Johannesburg South</span></li><li><span>WhatsApp</span><span>084 405 3994</span></li></ul>
+<a class="btn btn-wa" href="https://wa.me/27844053994" data-wa>WhatsApp for help</a> <a class="btn btn-ghost" href="tel:0844053994">Call</a>
+<p class="safety">In danger or in an accident? Contact emergency services first.</p></div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© <span id="yr">2026</span> Urban Roadside · Battery &amp; Key Rescue · Johannesburg</span><span><a href="about.html">Service areas + pricing</a></span></div></footer><div class="bar"><a href="https://wa.me/27844053994" data-wa>WhatsApp</a><a href="tel:0844053994">Call</a></div>
+<script>
+var NUM="27844053994";
+/* To add a service: add one object here. Photos go in /images. */
+var SERVICES=[
+{id:"unlock",name:"Car unlock",price:"From R650",img:"images/unlock.jpg",d:"Keys locked inside or lost. We get you back in without damage.",msg:"Car unlock (keys locked inside or lost)"},
+{id:"jump",name:"Jump start",price:"From R350",img:"images/jump.jpg",d:"Dead or weak battery boosted on the spot.",msg:"Jump start / battery boost"},
+{id:"tyre",name:"Flat tyre",price:"From R250",img:"images/tyre.jpg",d:"Tyre inflation and puncture assistance where you are.",msg:"Tyre inflation / puncture assist"},
+{id:"keys",name:"Keys / ignition",price:"Quote on inspection",img:"images/keys.jpg",d:"Key and ignition problems. We inspect first, then quote.",msg:"Keys / ignition assistance"},
+{id:"tow",name:"Towing",price:"Depends on distance",img:"images/towing.jpg",d:"When the car cannot be fixed roadside. Send pickup and drop-off locations.",msg:"Towing assistance"},
+{id:"fuel",name:"Fuel delivery",price:"Quote on WhatsApp",img:"images/fuel.jpg",d:"Ran out of fuel? We bring it to you.",msg:"Fuel delivery"}
+];
+/* Add real customer reviews here, e.g. {name:"Thabo M.",area:"Rosettenville",stars:5,text:"..."} — the section appears automatically. */
+var REVIEWS=[];
+var tabs=document.getElementById("tabs"),panel=document.getElementById("panel"),cur=0,car="",place="";
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function link(){var s=SERVICES[cur];return"https://wa.me/"+NUM+"?text="+encodeURIComponent("Hi Urban Roadside, I need: "+s.msg+"."+(car?" Car: "+car+".":"")+(place?" Location: "+place+".":"")+" I will send my live location now.")}
+function draw(fade){var s=SERVICES[cur];
+tabs.innerHTML=SERVICES.map(function(x,i){return'<button class="tab" role="tab" aria-selected="'+(i==cur)+'" data-i="'+i+'">'+esc(x.name)+'<small>'+esc(x.price)+'</small></button>'}).join("");
+panel.innerHTML='<div class="ph"><img src="'+s.img+'" alt="'+esc(s.name)+'"></div><div class="body'+(fade?" fade":"")+'"><h3>'+esc(s.name)+'</h3><span class="price">'+esc(s.price)+'</span><p class="d">'+esc(s.d)+'</p><label class="field">Car make, model and year<input id="car" value="'+esc(car)+'" placeholder="Toyota Corolla 2016" autocomplete="off"></label><label class="field">Where are you?<input id="place" value="'+esc(place)+'" placeholder="Engen near Southgate" autocomplete="off"></label><a class="btn btn-wa" id="send" href="'+link()+'">Request '+esc(s.name.toLowerCase())+' on WhatsApp</a><p class="note">Then tap the attach icon and choose Location &gt; Share live location. Prices exclude call-out fee.</p></div>'}
+tabs.addEventListener("click",function(e){var b=e.target.closest(".tab");if(b){cur=+b.dataset.i;draw(true)}});
+tabs.addEventListener("keydown",function(e){if(e.key=="ArrowDown"||e.key=="ArrowRight"||e.key=="ArrowUp"||e.key=="ArrowLeft"){cur=(cur+(e.key=="ArrowDown"||e.key=="ArrowRight"?1:SERVICES.length-1))%SERVICES.length;draw(true);tabs.children[cur].focus();e.preventDefault()}});
+panel.addEventListener("input",function(e){if(e.target.id=="car")car=e.target.value.trim();if(e.target.id=="place")place=e.target.value.trim();document.getElementById("send").href=link()});
+draw(false);
+if(REVIEWS.length){document.getElementById("reviews").hidden=false;document.getElementById("rgrid").innerHTML=REVIEWS.map(function(r){return'<div class="rev"><div class="stars" aria-label="'+r.stars+' out of 5">'+"★".repeat(r.stars)+'</div><p>'+esc(r.text)+'</p><b>'+esc(r.name)+'</b><small>'+esc(r.area||"")+'</small></div>'}).join("")}
+document.querySelectorAll("[data-wa]").forEach(function(a){a.href="https://wa.me/27844053994?text="+encodeURIComponent("Hi Urban Roadside, I need help.")});document.getElementById("yr").textContent=new Date().getFullYear();
+</script></body></html>
